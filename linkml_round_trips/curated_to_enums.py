@@ -11,7 +11,7 @@ from linkml_runtime.dumpers import yaml_dumper
 @click.option('--model_in', type=click.Path(exists=True), required=True)
 @click.option('--curated_yaml', type=click.Path(), default="curated.yaml")
 @click.option('--selected_enum', required=True)
-def enums_to_curateable(tsv_in, model_in, selected_enum, tsv_encoding, curated_yaml):
+def curated_to_enums(tsv_in, model_in, selected_enum, tsv_encoding, curated_yaml):
     from_tsv = pd.read_csv(tsv_in, sep="\t", encoding=tsv_encoding)
     from_tsv.index = from_tsv['text']
     print(from_tsv)
@@ -68,4 +68,4 @@ def enums_to_curateable(tsv_in, model_in, selected_enum, tsv_encoding, curated_y
 
 
 if __name__ == '__main__':
-    enums_to_curateable()
+    curated_to_enums()
