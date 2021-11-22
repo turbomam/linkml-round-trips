@@ -13,10 +13,17 @@ enums_to_curateable:
 
 # do some curation on enums_to_curateable.tsv and save as curated_enums.txt
 # Excel wants to call it "*.txt". I'm saving as UTF 16 so I can be sure about the encoding at import time.
+#
+#curated_to_enums:
+#	poetry run curated_to_enums \
+#		--tsv_in curated_enums.txt \
+#		--model_in ../linkml-model-enrichment/synbio_organism_mapped.yaml \
+#		--selected_enum binomial_name_enum
+
 
 curated_to_enums:
 	poetry run curated_to_enums \
-		--tsv_in curated_enums.txt \
+		--tsv_in ~/old_cont_new_struct.txt \
 		--model_in ../linkml-model-enrichment/synbio_organism_mapped.yaml \
 		--selected_enum binomial_name_enum
 

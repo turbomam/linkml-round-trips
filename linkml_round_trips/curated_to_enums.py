@@ -46,23 +46,46 @@ def curated_to_enums(tsv_in, model_in, selected_enum, tsv_encoding, curated_yaml
     for i in comparables:
         # # match on ??? against menum
         # # job 1: apply curations
+        # curation_notes ?
         print(i)
         model_says = me_pvs[i]
         tsv_says = ft_dict[i]
         if not pd.isna(tsv_says['curated_meaning']) and not pd.isna(tsv_says['curated_match']) and not pd.isna(
                 tsv_says['curated_type']):
             model_says.meaning = tsv_says['curated_meaning']
-            model_says.title = tsv_says['curated_match']
+            model_says.title = tsv_says['curated_preferred_label']
             # todo delete them, don't set to empty strings
-            model_says.annotations["match_val"] = ""
-            model_says.annotations["match_type"] = ""
-            model_says.annotations["cosine"] = ""
+            model_says.annotations["match_val"] = tsv_says["curated_match"]
+            model_says.annotations["match_type"] = tsv_says["curated_type"]
+            model_says.annotations["cosine"] = None
             model_says.annotations["curated"] = True
             print(model_says)
             me_pvs[i] = model_says
+
     menum.permissible_values = me_pvs
+
+    meanings_tally = []
+    for i in mep_keys:
+        i_m = menum.permissible_values[i].meaning
+        meanings_tally.append(i_m)
+
+    # todo for collapsing pvs to get one with each meaning, the texts could be aliases or something like that?
+    #   don't see an applicable slot at https://linkml.io/linkml-model/docs/PermissibleValue/#class-permissible_value
+
+    pvs_per_meaning = pd.Series(meanings_tally).value_counts(dropna=False)
+    print(pvs_per_meaning)
+
+    for i in mep_keys:
+        i_a = menum.permissible_values[i].annotations
+        i_m = menum.permissible_values[i].meaning
+        if i_m in pvs_per_meaning:
+            # todo inconsistent annotation structure
+            i_a["pvs_per_meaning"] = Annotation(tag="pvs_per_meaning", value=pvs_per_meaning[i_m])
+            # i_a["pvs_per_meaning"] = pvs_per_meaning[i_m]
+            menum.permissible_values[i].annotations = i_a
+
     dumped = yaml_dumper.dumps(menum)
-    print(dumped)
+    # print(dumped)
     mschema.enums[selected_enum] = menum
     yaml_dumper.dump(mschema, curated_yaml)
 

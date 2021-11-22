@@ -4,7 +4,8 @@ from linkml_runtime.utils.schemaview import SchemaView
 
 # specify normalized_dist and dist type?
 blank_row = {"text": "", "title": "", "meaning": "", "match_val": "", "match_type": "", "cosine": "",
-             "curated_meaning": "", "curated_match": "", "curated_type": "", "curation_notes": ""}
+             "curated_meaning": "", "curated_match": "", "curated_type": "", "curation_notes": "",
+             "curated_preferred_label": ""}
 br_keys = list(blank_row.keys())
 br_keys.sort()
 
