@@ -10,6 +10,7 @@ linkml = "^1.1.13"
 crdch-model = "^1.1.5"
 nmdc-schema = "^2021.11.15-rc.1"
 linkml-model = "^1.0.6"
+click-log = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 
