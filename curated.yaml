@@ -1,0 +1,1215 @@
+name: Organism
+description: Synthetic biology Organism
+id: https://w3id.org/Organism
+imports:
+- linkml:types
+prefixes:
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  synbio:
+    prefix_prefix: synbio
+    prefix_reference: https://w3id.org/synbio/
+default_prefix: synbio
+enums:
+  assembly_dir_path_enum:
+    name: assembly_dir_path_enum
+    definition_uri: https://w3id.org/synbio/AssemblyDirPathEnum
+    from_schema: https://w3id.org/Organism
+    permissible_values:
+      /data/cDNA/Drosophila/:
+        text: /data/cDNA/Drosophila/
+        description: /data/cDNA/Drosophila/
+      /data/cDNA/human/:
+        text: /data/cDNA/human/
+        description: /data/cDNA/human/
+  binomial_name_enum:
+    name: binomial_name_enum
+    from_schema: https://w3id.org/Organism
+    permissible_values:
+      Acetobacter pomorum:
+        text: Acetobacter pomorum
+        description: Acetobacter pomorum
+        meaning: NCBITaxon:65959
+        annotations:
+          match_val:
+            tag: match_val
+            value: Acetobacter pomorum
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Acetobacter tropicalis:
+        text: Acetobacter tropicalis
+        description: Acetobacter tropicalis
+        meaning: NCBITaxon:104102
+        annotations:
+          match_val:
+            tag: match_val
+            value: Acetobacter tropicalis
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Aequorea.victoria:
+        text: Aequorea.victoria
+        description: Aequorea victoria
+        meaning: NCBITaxon:6100
+        annotations:
+          match_val:
+            tag: match_val
+            value: Aequorea victoria
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Aequorea_victoria:
+        text: Aequorea_victoria
+        description: Aequorea victoria
+        meaning: NCBITaxon:6100
+        annotations:
+          match_val:
+            tag: match_val
+            value: Aequorea victoria
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Agrobacterium.tumefaciens:
+        text: Agrobacterium.tumefaciens
+        description: Agrobacterium tumefaciens
+        meaning: NCBITaxon:358
+        annotations:
+          match_val:
+            tag: match_val
+            value: Agrobacterium tumefaciens
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Arabidopsis.thaliana:
+        text: Arabidopsis.thaliana
+        description: Arabidopsis thaliana
+        meaning: NCBITaxon:3702
+        annotations:
+          match_val:
+            tag: match_val
+            value: Arabidopsis thaliana
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Ashbya.gossypii:
+        text: Ashbya.gossypii
+        description: Eremothecium gossypii
+        meaning: NCBITaxon:33169
+        annotations:
+          match_val:
+            tag: match_val
+            value: Ashbya gossypii
+          match_type:
+            tag: match_type
+            value: hasRelatedSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Bacillus flexus:
+        text: Bacillus flexus
+        meaning: NCBITaxon:86664
+        annotations:
+          match_val: Bacillus flexus
+          match_type: synonym
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Priestia flexa
+      Bacillus kochii:
+        text: Bacillus kochii
+        description: Cytobacillus kochii
+        meaning: NCBITaxon:859143
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacillus kochii
+          match_type:
+            tag: match_type
+            value: hasRelatedSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Bacillus subtilis:
+        text: Bacillus subtilis
+        description: Bacillus subtilis
+        meaning: NCBITaxon:1423
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacillus subtilis
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Bacillus.subtilis:
+        text: Bacillus.subtilis
+        description: Bacillus subtilis
+        meaning: NCBITaxon:1423
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacillus subtilis
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Bacteriophage.Mu:
+        text: Bacteriophage.Mu
+        description: Escherichia phage Mu
+        meaning: NCBITaxon:2681603
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage Mu
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Bordetella.bronchiseptica:
+        text: Bordetella.bronchiseptica
+        description: Bordetella bronchiseptica
+        meaning: NCBITaxon:518
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bordetella bronchiseptica
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Citrobacter freundii:
+        text: Citrobacter freundii
+        description: Citrobacter freundii
+        meaning: NCBITaxon:546
+        annotations:
+          match_val:
+            tag: match_val
+            value: Citrobacter freundii
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Cytomegalovirus:
+        text: Cytomegalovirus
+        description: Cytomegalovirus
+        meaning: NCBITaxon:10358
+        annotations:
+          match_val:
+            tag: match_val
+            value: Cytomegalovirus
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Discosoma.sp:
+        text: Discosoma.sp
+        description: Discosoma sp.
+        meaning: NCBITaxon:86600
+        annotations:
+          match_val:
+            tag: match_val
+            value: Discosoma sp.
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0425728922436619'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Drosophila melanogaster:
+        text: Drosophila melanogaster
+        description: Drosophila melanogaster
+        meaning: NCBITaxon:7227
+        annotations:
+          match_val:
+            tag: match_val
+            value: Drosophila melanogaster
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Drosophila pseudoobscura:
+        text: Drosophila pseudoobscura
+        description: Drosophila pseudoobscura
+        meaning: NCBITaxon:7237
+        annotations:
+          match_val:
+            tag: match_val
+            value: Drosophila pseudoobscura
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Drosophila.melanogaster:
+        text: Drosophila.melanogaster
+        description: Drosophila melanogaster
+        meaning: NCBITaxon:7227
+        annotations:
+          match_val:
+            tag: match_val
+            value: Drosophila melanogaster
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Entacmaea.quadricolor:
+        text: Entacmaea.quadricolor
+        description: Entacmaea quadricolor
+        meaning: NCBITaxon:6118
+        annotations:
+          match_val:
+            tag: match_val
+            value: Entacmaea quadricolor
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Enterococcus durans:
+        text: Enterococcus durans
+        description: Enterococcus durans
+        meaning: NCBITaxon:53345
+        annotations:
+          match_val:
+            tag: match_val
+            value: Enterococcus durans
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Escherichia coli:
+        text: Escherichia coli
+        description: Escherichia coli
+        meaning: NCBITaxon:562
+        annotations:
+          match_val:
+            tag: match_val
+            value: Escherichia coli
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Escherichia.coli:
+        text: Escherichia.coli
+        description: Escherichia coli
+        meaning: NCBITaxon:562
+        annotations:
+          match_val:
+            tag: match_val
+            value: Escherichia coli
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Homo sapiens:
+        text: Homo sapiens
+        description: Homo sapiens
+        meaning: NCBITaxon:9606
+        annotations:
+          match_val:
+            tag: match_val
+            value: Homo sapiens
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Homo sapiens Mus musculus:
+        text: Homo sapiens Mus musculus
+        annotations:
+          match_val:
+            tag: match_val
+            value: Homo sapiens/Mus musculus xenograft
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.13992192242976664'
+      Human influenza A:
+        text: Human influenza A
+        meaning: NCBITaxon:11320
+        annotations:
+          match_val: Human Influenza A Virus
+          match_type: equivalent name
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Influenza A virus
+      Klebsiella.pneumoniae:
+        text: Klebsiella.pneumoniae
+        description: Klebsiella pneumoniae
+        meaning: NCBITaxon:573
+        annotations:
+          match_val:
+            tag: match_val
+            value: Klebsiella pneumoniae
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Komagataella pastoris:
+        text: Komagataella pastoris
+        description: Komagataella pastoris
+        meaning: NCBITaxon:4922
+        annotations:
+          match_val:
+            tag: match_val
+            value: Komagataella pastoris
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Lactobacillus brevis:
+        text: Lactobacillus brevis
+        meaning: NCBITaxon:1580
+        annotations:
+          match_val: Lactobacillus brevis
+          match_type: synonym
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Levilactobacillus brevis
+      Lactobacillus plantarum:
+        text: Lactobacillus plantarum
+        meaning: NCBITaxon:1590
+        annotations:
+          match_val: Lactobacillus plantarum
+          match_type: synonym
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Lactiplantibacillus plantarum
+      Lentivirus.human-immunodeficiency-virus1:
+        text: Lentivirus.human-immunodeficiency-virus1
+        meaning: NCBITaxon:11676
+        annotations:
+          match_val: Human immunodeficiency virus 1
+          match_type: label
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Human immunodeficiency virus 1
+      Leuconostoc mesenteroides:
+        text: Leuconostoc mesenteroides
+        description: Leuconostoc mesenteroides
+        meaning: NCBITaxon:1245
+        annotations:
+          match_val:
+            tag: match_val
+            value: Leuconostoc mesenteroides
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Mus musculus:
+        text: Mus musculus
+        description: Mus musculus
+        meaning: NCBITaxon:10090
+        annotations:
+          match_val:
+            tag: match_val
+            value: Mus musculus
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      NA:
+        text: NA
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacillus sp. B4-WWTP-NA-D-NA-NA
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.5477329831333546'
+      Nepovirus.Tobacco-ringspot-virus:
+        text: Nepovirus.Tobacco-ringspot-virus
+        meaning: NCBITaxon:12282
+        annotations:
+          match_val: Tobacco ringspot virus
+          match_type: label
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Tobacco ringspot virus
+      Paenibacillus taichungensis:
+        text: Paenibacillus taichungensis
+        description: Paenibacillus taichungensis
+        meaning: NCBITaxon:484184
+        annotations:
+          match_val:
+            tag: match_val
+            value: Paenibacillus taichungensis
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Pichia pastoris:
+        text: Pichia pastoris
+        description: Komagataella pastoris
+        meaning: NCBITaxon:4922
+        annotations:
+          match_val:
+            tag: match_val
+            value: Pichia pastoris
+          match_type:
+            tag: match_type
+            value: hasRelatedSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Pisum.sativum:
+        text: Pisum.sativum
+        description: Pisum sativum
+        meaning: NCBITaxon:3888
+        annotations:
+          match_val:
+            tag: match_val
+            value: Pisum sativum
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Pseudomonas aeruginosa:
+        text: Pseudomonas aeruginosa
+        description: Pseudomonas aeruginosa
+        meaning: NCBITaxon:287
+        annotations:
+          match_val:
+            tag: match_val
+            value: Pseudomonas aeruginosa
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Pseudomonas plasmid pVS1:
+        text: Pseudomonas plasmid pVS1
+        annotations:
+          match_val:
+            tag: match_val
+            value: Plasmid pVS1
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.2456634908586427'
+      Pseudomonas.putida:
+        text: Pseudomonas.putida
+        description: Pseudomonas putida
+        meaning: NCBITaxon:303
+        annotations:
+          match_val:
+            tag: match_val
+            value: Pseudomonas putida
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      SARS-CoV-2:
+        text: SARS-CoV-2
+        meaning: NCBITaxon:2697049
+        annotations:
+          match_val: SARS-CoV-2
+          match_type: genbank acronym
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Severe acute respiratory syndrome coronavirus 2
+      Saccharomyces cerevisiae:
+        text: Saccharomyces cerevisiae
+        description: Saccharomyces cerevisiae
+        meaning: NCBITaxon:4932
+        annotations:
+          match_val:
+            tag: match_val
+            value: Saccharomyces cerevisiae
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Saccharomyces.cerevisiae:
+        text: Saccharomyces.cerevisiae
+        description: Saccharomyces cerevisiae
+        meaning: NCBITaxon:4932
+        annotations:
+          match_val:
+            tag: match_val
+            value: Saccharomyces cerevisiae
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Salmonella enterica:
+        text: Salmonella enterica
+        description: Salmonella enterica
+        meaning: NCBITaxon:28901
+        annotations:
+          match_val:
+            tag: match_val
+            value: Salmonella enterica
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Simian.virus.40:
+        text: Simian.virus.40
+        meaning: NCBITaxon:1891767
+        annotations:
+          match_val: Simian virus 40
+          match_type: equivalent name
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Macaca mulatta polyomavirus 1
+      Solanum.tuberosum:
+        text: Solanum.tuberosum
+        description: Solanum tuberosum
+        meaning: NCBITaxon:4113
+        annotations:
+          match_val:
+            tag: match_val
+            value: Solanum tuberosum
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Sorangium.cellulosum:
+        text: Sorangium.cellulosum
+        description: Sorangium cellulosum
+        meaning: NCBITaxon:56
+        annotations:
+          match_val:
+            tag: match_val
+            value: Sorangium cellulosum
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Staphylococcus.aureus:
+        text: Staphylococcus.aureus
+        description: Staphylococcus aureus
+        meaning: NCBITaxon:1280
+        annotations:
+          match_val:
+            tag: match_val
+            value: Staphylococcus aureus
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Streptococcus.pyogenes:
+        text: Streptococcus.pyogenes
+        description: Streptococcus pyogenes
+        meaning: NCBITaxon:1314
+        annotations:
+          match_val:
+            tag: match_val
+            value: Streptococcus pyogenes
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Streptomyces.alboniger:
+        text: Streptomyces.alboniger
+        description: Streptomyces alboniger
+        meaning: NCBITaxon:132473
+        annotations:
+          match_val:
+            tag: match_val
+            value: Streptomyces alboniger
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Streptomyces.noursei:
+        text: Streptomyces.noursei
+        description: Streptomyces noursei
+        meaning: NCBITaxon:1971
+        annotations:
+          match_val:
+            tag: match_val
+            value: Streptomyces noursei
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Vibrio natriegens:
+        text: Vibrio natriegens
+        description: Vibrio natriegens
+        meaning: NCBITaxon:691
+        annotations:
+          match_val:
+            tag: match_val
+            value: Vibrio natriegens
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Woodchuck Hepatitis Virus:
+        text: Woodchuck Hepatitis Virus
+        description: Woodchuck hepatitis virus
+        meaning: NCBITaxon:35269
+        annotations:
+          match_val:
+            tag: match_val
+            value: Woodchuck hepatitis virus
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Woodchuck.Hepatitis.Virus:
+        text: Woodchuck.Hepatitis.Virus
+        description: Woodchuck hepatitis virus
+        meaning: NCBITaxon:35269
+        annotations:
+          match_val:
+            tag: match_val
+            value: Woodchuck hepatitis virus
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      Xenopus.laevis:
+        text: Xenopus.laevis
+        description: Xenopus laevis
+        meaning: NCBITaxon:8355
+        annotations:
+          match_val:
+            tag: match_val
+            value: Xenopus laevis
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      Yarrowia lipolytica:
+        text: Yarrowia lipolytica
+        description: Yarrowia lipolytica
+        meaning: NCBITaxon:4952
+        annotations:
+          match_val:
+            tag: match_val
+            value: Yarrowia lipolytica
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage P1:
+        text: bacteriophage P1
+        description: Escherichia virus P1
+        meaning: NCBITaxon:10678
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage P1
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.M13:
+        text: bacteriophage.M13
+        description: Escherichia virus M13
+        meaning: NCBITaxon:1977402
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage M13
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.SP6:
+        text: bacteriophage.SP6
+        description: Salmonella virus SP6
+        meaning: NCBITaxon:194966
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage SP6
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.T3:
+        text: bacteriophage.T3
+        description: Enterobacteria phage T3
+        meaning: NCBITaxon:10759
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage T3
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.T4:
+        text: bacteriophage.T4
+        description: Escherichia virus T4
+        meaning: NCBITaxon:10665
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage T4
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.T7:
+        text: bacteriophage.T7
+        description: Escherichia phage T7
+        meaning: NCBITaxon:10760
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage T7
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.f1:
+        text: bacteriophage.f1
+        description: Enterobacteria phage f1
+        meaning: NCBITaxon:10863
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage f1
+          match_type:
+            tag: match_type
+            value: hasExactSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      bacteriophage.lambda:
+        text: bacteriophage.lambda
+        description: Escherichia virus Lambda
+        meaning: NCBITaxon:10710
+        annotations:
+          match_val:
+            tag: match_val
+            value: Bacteriophage lambda
+          match_type:
+            tag: match_type
+            value: hasRelatedSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      cauliflower.mosaic.virus:
+        text: cauliflower.mosaic.virus
+        description: Cauliflower mosaic virus
+        meaning: NCBITaxon:10641
+        annotations:
+          match_val:
+            tag: match_val
+            value: Cauliflower mosaic virus
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      herpes.simplex.virus-1:
+        text: herpes.simplex.virus-1
+        meaning: NCBITaxon:10298
+        annotations:
+          match_val: Herpes simplex virus 1
+          match_type: genbank synonym
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+        title: Human alphaherpesvirus 1
+      homo.sapiens:
+        text: homo.sapiens
+        description: Homo sapiens
+        meaning: NCBITaxon:9606
+        annotations:
+          match_val:
+            tag: match_val
+            value: Homo sapiens
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+      ms21:
+        text: ms21
+        annotations:
+          match_val:
+            tag: match_val
+            value: Rhodobacter sp. MS21
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.6026402928804868'
+      phage.lambda:
+        text: phage.lambda
+        meaning: NCBITaxon:10710
+        annotations:
+          match_val: phage lambda
+          match_type: equivalent name
+          curated: true
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '2'
+        title: Escherichia virus Lambda
+      plasmids:
+        text: plasmids
+        description: plasmids
+        meaning: NCBITaxon:36549
+        annotations:
+          match_val:
+            tag: match_val
+            value: plasmids
+          match_type:
+            tag: match_type
+            value: label
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+      synthetic:
+        text: synthetic
+        description: synthetic construct
+        meaning: NCBITaxon:32630
+        annotations:
+          match_val:
+            tag: match_val
+            value: synthetic
+          match_type:
+            tag: match_type
+            value: hasRelatedSynonym
+          cosine:
+            tag: cosine
+            value: '0.0'
+          pvs_per_meaning:
+            tag: pvs_per_meaning
+            value: '1'
+slots:
+  species:
+    name: species
+    definition_uri: https://w3id.org/synbio/species
+    from_schema: https://w3id.org/Organism
+  strain:
+    name: strain
+    definition_uri: https://w3id.org/synbio/strain
+    from_schema: https://w3id.org/Organism
+  comment:
+    name: comment
+    definition_uri: https://w3id.org/synbio/comment
+    from_schema: https://w3id.org/Organism
+  default_genome_id:
+    name: default_genome_id
+    definition_uri: https://w3id.org/synbio/default_genome_id
+    from_schema: https://w3id.org/Organism
+  assembly_dir_path:
+    name: assembly_dir_path
+    definition_uri: https://w3id.org/synbio/assembly_dir_path
+    from_schema: https://w3id.org/Organism
+  binomial_name:
+    name: binomial_name
+    definition_uri: https://w3id.org/synbio/binomial_name
+    from_schema: https://w3id.org/Organism
+    range: binomial_name_enum
+classes:
+  Organism:
+    name: Organism
+    definition_uri: https://w3id.org/synbio/Organism
+    from_schema: https://w3id.org/Organism
+    is_a: NamedThing
+    slots:
+    - species
+    - strain
+    - comment
+    - default_genome_id
+    - assembly_dir_path
+    - binomial_name
+metamodel_version: 1.7.0
+source_file: organisms.yaml
+generation_date: '2021-11-17T13:16:26'

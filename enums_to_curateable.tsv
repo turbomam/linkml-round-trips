@@ -1,73 +1,73 @@
-text	title	meaning	match_val	match_type	cosine	curated_meaning	curated_match	curated_type	curation_notes
-Acetobacter pomorum	Acetobacter pomorum	NCBITaxon:65959	Acetobacter pomorum	label	0.0				
-Acetobacter tropicalis	Acetobacter tropicalis	NCBITaxon:104102	Acetobacter tropicalis	label	0.0				
-Aequorea.victoria	Aequorea victoria	NCBITaxon:6100	Aequorea victoria	label	0.0				
-Aequorea_victoria	Aequorea victoria	NCBITaxon:6100	Aequorea victoria	label	0.0				
-Agrobacterium.tumefaciens	Agrobacterium tumefaciens	NCBITaxon:358	Agrobacterium tumefaciens	label	0.0				
-Arabidopsis.thaliana	Arabidopsis thaliana	NCBITaxon:3702	Arabidopsis thaliana	label	0.0				
-Ashbya.gossypii	Eremothecium gossypii	NCBITaxon:33169	Ashbya gossypii	hasRelatedSynonym	0.0				
-Bacillus flexus			Bacillus flexus T6186-2	label	0.16650642566271778				
-Bacillus kochii	Cytobacillus kochii	NCBITaxon:859143	Bacillus kochii	hasRelatedSynonym	0.0				
-Bacillus subtilis	Bacillus subtilis	NCBITaxon:1423	Bacillus subtilis	label	0.0				
-Bacillus.subtilis	Bacillus subtilis	NCBITaxon:1423	Bacillus subtilis	label	0.0				
-Bacteriophage.Mu	Escherichia phage Mu	NCBITaxon:2681603	Bacteriophage Mu	hasExactSynonym	0.0				
-Bordetella.bronchiseptica	Bordetella bronchiseptica	NCBITaxon:518	Bordetella bronchiseptica	label	0.0				
-Citrobacter freundii	Citrobacter freundii	NCBITaxon:546	Citrobacter freundii	label	0.0				
-Cytomegalovirus	Cytomegalovirus	NCBITaxon:10358	Cytomegalovirus	label	0.0				
-Discosoma.sp	Discosoma sp.	NCBITaxon:86600	Discosoma sp.	label	0.0425728922436619				
-Drosophila melanogaster	Drosophila melanogaster	NCBITaxon:7227	Drosophila melanogaster	label	0.0				
-Drosophila pseudoobscura	Drosophila pseudoobscura	NCBITaxon:7237	Drosophila pseudoobscura	label	0.0				
-Drosophila.melanogaster	Drosophila melanogaster	NCBITaxon:7227	Drosophila melanogaster	label	0.0				
-Entacmaea.quadricolor	Entacmaea quadricolor	NCBITaxon:6118	Entacmaea quadricolor	label	0.0				
-Enterococcus durans	Enterococcus durans	NCBITaxon:53345	Enterococcus durans	label	0.0				
-Escherichia coli	Escherichia coli	NCBITaxon:562	Escherichia coli	label	0.0				
-Escherichia.coli	Escherichia coli	NCBITaxon:562	Escherichia coli	label	0.0				
-Homo sapiens	Homo sapiens	NCBITaxon:9606	Homo sapiens	label	0.0				
-Homo sapiens Mus musculus			Homo sapiens/Mus musculus xenograft	label	0.13992192242976664				
-Human influenza A			Human Influenza A Virus	hasExactSynonym	0.13247238276429096				
-Klebsiella.pneumoniae	Klebsiella pneumoniae	NCBITaxon:573	Klebsiella pneumoniae	label	0.0				
-Komagataella pastoris	Komagataella pastoris	NCBITaxon:4922	Komagataella pastoris	label	0.0				
-Lactobacillus brevis			Lactobacillus brevis EW	label	0.05848691647599147				
-Lactobacillus plantarum			Lactobacillus plantarum IPLA88	label	0.08929227511907478				
-Lentivirus.human-immunodeficiency-virus1			Human immunodeficiency virus	label	0.12022816123485602				
-Leuconostoc mesenteroides	Leuconostoc mesenteroides	NCBITaxon:1245	Leuconostoc mesenteroides	label	0.0				
-Mus musculus	Mus musculus	NCBITaxon:10090	Mus musculus	label	0.0				
-NA			Bacillus sp. B4-WWTP-NA-D-NA-NA	label	0.5477329831333546				
-Nepovirus.Tobacco-ringspot-virus			Tobacco ringspot virus	label	0.11392237043170383				
-Paenibacillus taichungensis	Paenibacillus taichungensis	NCBITaxon:484184	Paenibacillus taichungensis	label	0.0				
-Pichia pastoris	Komagataella pastoris	NCBITaxon:4922	Pichia pastoris	hasRelatedSynonym	0.0				
-Pisum.sativum	Pisum sativum	NCBITaxon:3888	Pisum sativum	label	0.0				
-Pseudomonas aeruginosa	Pseudomonas aeruginosa	NCBITaxon:287	Pseudomonas aeruginosa	label	0.0				
-Pseudomonas plasmid pVS1			Plasmid pVS1	label	0.2456634908586427				
-Pseudomonas.putida	Pseudomonas putida	NCBITaxon:303	Pseudomonas putida	label	0.0				
-SARS-CoV-2			Reverse genetics vector pCCI-4K-SARS-CoV-2-NanoLuc	label	0.679492017453059				
-Saccharomyces cerevisiae	Saccharomyces cerevisiae	NCBITaxon:4932	Saccharomyces cerevisiae	label	0.0				
-Saccharomyces.cerevisiae	Saccharomyces cerevisiae	NCBITaxon:4932	Saccharomyces cerevisiae	label	0.0				
-Salmonella enterica	Salmonella enterica	NCBITaxon:28901	Salmonella enterica	label	0.0				
-Simian.virus.40			Simian virus 41	hasExactSynonym	0.0714285714285714				
-Solanum.tuberosum	Solanum tuberosum	NCBITaxon:4113	Solanum tuberosum	label	0.0				
-Sorangium.cellulosum	Sorangium cellulosum	NCBITaxon:56	Sorangium cellulosum	label	0.0				
-Staphylococcus.aureus	Staphylococcus aureus	NCBITaxon:1280	Staphylococcus aureus	label	0.0				
-Streptococcus.pyogenes	Streptococcus pyogenes	NCBITaxon:1314	Streptococcus pyogenes	label	0.0				
-Streptomyces.alboniger	Streptomyces alboniger	NCBITaxon:132473	Streptomyces alboniger	label	0.0				
-Streptomyces.noursei	Streptomyces noursei	NCBITaxon:1971	Streptomyces noursei	label	0.0				
-Vibrio natriegens	Vibrio natriegens	NCBITaxon:691	Vibrio natriegens	label	0.0				
-Woodchuck Hepatitis Virus	Woodchuck hepatitis virus	NCBITaxon:35269	Woodchuck hepatitis virus	label	0.0				
-Woodchuck.Hepatitis.Virus	Woodchuck hepatitis virus	NCBITaxon:35269	Woodchuck hepatitis virus	label	0.0				
-Xenopus.laevis	Xenopus laevis	NCBITaxon:8355	Xenopus laevis	label	0.0				
-Yarrowia lipolytica	Yarrowia lipolytica	NCBITaxon:4952	Yarrowia lipolytica	label	0.0				
-bacteriophage P1	Escherichia virus P1	NCBITaxon:10678	Bacteriophage P1	hasExactSynonym	0.0				
-bacteriophage.M13	Escherichia virus M13	NCBITaxon:1977402	Bacteriophage M13	hasExactSynonym	0.0				
-bacteriophage.SP6	Salmonella virus SP6	NCBITaxon:194966	Bacteriophage SP6	hasExactSynonym	0.0				
-bacteriophage.T3	Enterobacteria phage T3	NCBITaxon:10759	Bacteriophage T3	hasExactSynonym	0.0				
-bacteriophage.T4	Escherichia virus T4	NCBITaxon:10665	Bacteriophage T4	hasExactSynonym	0.0				
-bacteriophage.T7	Escherichia phage T7	NCBITaxon:10760	Bacteriophage T7	hasExactSynonym	0.0				
-bacteriophage.f1	Enterobacteria phage f1	NCBITaxon:10863	Bacteriophage f1	hasExactSynonym	0.0				
-bacteriophage.lambda	Escherichia virus Lambda	NCBITaxon:10710	Bacteriophage lambda	hasRelatedSynonym	0.0				
-cauliflower.mosaic.virus	Cauliflower mosaic virus	NCBITaxon:10641	Cauliflower mosaic virus	label	0.0				
-herpes.simplex.virus-1			Herpes simplex virus unknown type	label	0.20069474611454663				
-homo.sapiens	Homo sapiens	NCBITaxon:9606	Homo sapiens	label	0.0				
-ms21			Rhodobacter sp. MS21	label	0.6026402928804868				
-phage.lambda			Escherichia phage Lambda	label	0.33667504192891995				
-plasmids	plasmids	NCBITaxon:36549	plasmids	label	0.0				
-synthetic	synthetic construct	NCBITaxon:32630	synthetic	hasRelatedSynonym	0.0				
+text	title	meaning	match_val	match_type	cosine	curated_meaning	curated_match	curated_type	curation_notes	curated_preferred_label
+Acetobacter pomorum		NCBITaxon:65959	Acetobacter pomorum	label	0.0					
+Acetobacter tropicalis		NCBITaxon:104102	Acetobacter tropicalis	label	0.0					
+Aequorea.victoria		NCBITaxon:6100	Aequorea victoria	label	0.0					
+Aequorea_victoria		NCBITaxon:6100	Aequorea victoria	label	0.0					
+Agrobacterium.tumefaciens		NCBITaxon:358	Agrobacterium tumefaciens	label	0.0					
+Arabidopsis.thaliana		NCBITaxon:3702	Arabidopsis thaliana	label	0.0					
+Ashbya.gossypii		NCBITaxon:33169	Ashbya gossypii	hasRelatedSynonym	0.0					
+Bacillus flexus			Bacillus flexus T6186-2	label	0.16650642566271778					
+Bacillus kochii		NCBITaxon:859143	Bacillus kochii	hasRelatedSynonym	0.0					
+Bacillus subtilis		NCBITaxon:1423	Bacillus subtilis	label	0.0					
+Bacillus.subtilis		NCBITaxon:1423	Bacillus subtilis	label	0.0					
+Bacteriophage.Mu		NCBITaxon:2681603	Bacteriophage Mu	hasExactSynonym	0.0					
+Bordetella.bronchiseptica		NCBITaxon:518	Bordetella bronchiseptica	label	0.0					
+Citrobacter freundii		NCBITaxon:546	Citrobacter freundii	label	0.0					
+Cytomegalovirus		NCBITaxon:10358	Cytomegalovirus	label	0.0					
+Discosoma.sp		NCBITaxon:86600	Discosoma sp.	label	0.0425728922436619					
+Drosophila melanogaster		NCBITaxon:7227	Drosophila melanogaster	label	0.0					
+Drosophila pseudoobscura		NCBITaxon:7237	Drosophila pseudoobscura	label	0.0					
+Drosophila.melanogaster		NCBITaxon:7227	Drosophila melanogaster	label	0.0					
+Entacmaea.quadricolor		NCBITaxon:6118	Entacmaea quadricolor	label	0.0					
+Enterococcus durans		NCBITaxon:53345	Enterococcus durans	label	0.0					
+Escherichia coli		NCBITaxon:562	Escherichia coli	label	0.0					
+Escherichia.coli		NCBITaxon:562	Escherichia coli	label	0.0					
+Homo sapiens		NCBITaxon:9606	Homo sapiens	label	0.0					
+Homo sapiens Mus musculus			Homo sapiens/Mus musculus xenograft	label	0.13992192242976664					
+Human influenza A			Human Influenza A Virus	hasExactSynonym	0.13247238276429096					
+Klebsiella.pneumoniae		NCBITaxon:573	Klebsiella pneumoniae	label	0.0					
+Komagataella pastoris		NCBITaxon:4922	Komagataella pastoris	label	0.0					
+Lactobacillus brevis			Lactobacillus brevis EW	label	0.05848691647599147					
+Lactobacillus plantarum			Lactobacillus plantarum IPLA88	label	0.08929227511907478					
+Lentivirus.human-immunodeficiency-virus1			Human immunodeficiency virus	label	0.12022816123485602					
+Leuconostoc mesenteroides		NCBITaxon:1245	Leuconostoc mesenteroides	label	0.0					
+Mus musculus		NCBITaxon:10090	Mus musculus	label	0.0					
+NA			Bacillus sp. B4-WWTP-NA-D-NA-NA	label	0.5477329831333546					
+Nepovirus.Tobacco-ringspot-virus			Tobacco ringspot virus	label	0.11392237043170383					
+Paenibacillus taichungensis		NCBITaxon:484184	Paenibacillus taichungensis	label	0.0					
+Pichia pastoris		NCBITaxon:4922	Pichia pastoris	hasRelatedSynonym	0.0					
+Pisum.sativum		NCBITaxon:3888	Pisum sativum	label	0.0					
+Pseudomonas aeruginosa		NCBITaxon:287	Pseudomonas aeruginosa	label	0.0					
+Pseudomonas plasmid pVS1			Plasmid pVS1	label	0.2456634908586427					
+Pseudomonas.putida		NCBITaxon:303	Pseudomonas putida	label	0.0					
+SARS-CoV-2			Reverse genetics vector pCCI-4K-SARS-CoV-2-NanoLuc	label	0.679492017453059					
+Saccharomyces cerevisiae		NCBITaxon:4932	Saccharomyces cerevisiae	label	0.0					
+Saccharomyces.cerevisiae		NCBITaxon:4932	Saccharomyces cerevisiae	label	0.0					
+Salmonella enterica		NCBITaxon:28901	Salmonella enterica	label	0.0					
+Simian.virus.40			Simian virus 41	hasExactSynonym	0.0714285714285714					
+Solanum.tuberosum		NCBITaxon:4113	Solanum tuberosum	label	0.0					
+Sorangium.cellulosum		NCBITaxon:56	Sorangium cellulosum	label	0.0					
+Staphylococcus.aureus		NCBITaxon:1280	Staphylococcus aureus	label	0.0					
+Streptococcus.pyogenes		NCBITaxon:1314	Streptococcus pyogenes	label	0.0					
+Streptomyces.alboniger		NCBITaxon:132473	Streptomyces alboniger	label	0.0					
+Streptomyces.noursei		NCBITaxon:1971	Streptomyces noursei	label	0.0					
+Vibrio natriegens		NCBITaxon:691	Vibrio natriegens	label	0.0					
+Woodchuck Hepatitis Virus		NCBITaxon:35269	Woodchuck hepatitis virus	label	0.0					
+Woodchuck.Hepatitis.Virus		NCBITaxon:35269	Woodchuck hepatitis virus	label	0.0					
+Xenopus.laevis		NCBITaxon:8355	Xenopus laevis	label	0.0					
+Yarrowia lipolytica		NCBITaxon:4952	Yarrowia lipolytica	label	0.0					
+bacteriophage P1		NCBITaxon:10678	Bacteriophage P1	hasExactSynonym	0.0					
+bacteriophage.M13		NCBITaxon:1977402	Bacteriophage M13	hasExactSynonym	0.0					
+bacteriophage.SP6		NCBITaxon:194966	Bacteriophage SP6	hasExactSynonym	0.0					
+bacteriophage.T3		NCBITaxon:10759	Bacteriophage T3	hasExactSynonym	0.0					
+bacteriophage.T4		NCBITaxon:10665	Bacteriophage T4	hasExactSynonym	0.0					
+bacteriophage.T7		NCBITaxon:10760	Bacteriophage T7	hasExactSynonym	0.0					
+bacteriophage.f1		NCBITaxon:10863	Bacteriophage f1	hasExactSynonym	0.0					
+bacteriophage.lambda		NCBITaxon:10710	Bacteriophage lambda	hasRelatedSynonym	0.0					
+cauliflower.mosaic.virus		NCBITaxon:10641	Cauliflower mosaic virus	label	0.0					
+herpes.simplex.virus-1			Herpes simplex virus unknown type	label	0.20069474611454663					
+homo.sapiens		NCBITaxon:9606	Homo sapiens	label	0.0					
+ms21			Rhodobacter sp. MS21	label	0.6026402928804868					
+phage.lambda			Escherichia phage Lambda	label	0.33667504192891995					
+plasmids		NCBITaxon:36549	plasmids	label	0.0					
+synthetic		NCBITaxon:32630	synthetic	hasRelatedSynonym	0.0					
