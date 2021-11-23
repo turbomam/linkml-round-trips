@@ -3,7 +3,7 @@
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
 
-# saves to curated_enums.txt by default
+# saves to enums_to_curateable.tsv by default
 # yuck, some default output, some required/no default/some STDOUT
 enums_to_curateable:
 	poetry run enums_to_curateable \
