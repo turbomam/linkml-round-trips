@@ -1,4 +1,4 @@
-.PHONY: enums_to_curateable curated_to_enums linkml_to_dh_no_annotations
+.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample
 
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
@@ -21,8 +21,14 @@ curated_to_enums:
 		--model_in organisms.yaml \
 		--selected_enum binomial_name_enum
 
-linkml_to_dh_no_annotations:
+mixs_soil:
 	poetry run linkml_to_dh_no_annotations \
 		--model_yaml ../mixs-source/model/schema/mixs.yaml \
 		--add_pattern_to_guidance \
 		--model_class soil
+
+nmdc_biosample:
+	poetry run linkml_to_dh_no_annotations \
+	--model_yaml ../nmdc-schema/src/schema/nmdc.yaml \
+	--model_class biosample \
+	--add_pattern_to_guidance
