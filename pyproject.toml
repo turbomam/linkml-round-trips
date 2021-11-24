@@ -19,7 +19,8 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-demos = "linkml_round_trips.demos:hello"
+#demos = "linkml_round_trips.demos:hello"
 curated_to_enums = "linkml_round_trips.curated_to_enums:curated_to_enums"
 enums_to_curateable = "linkml_round_trips.enums_to_curateable:enums_to_curateable"
+linkml_to_dh_no_annotations = "linkml_round_trips.linkml_to_dh_no_annotations:linkml_to_dh_no_annotations"
 

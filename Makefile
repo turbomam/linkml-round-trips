@@ -1,4 +1,4 @@
-.PHONY: enums_to_curateable curated_to_enums
+.PHONY: enums_to_curateable curated_to_enums linkml_to_dh_no_annotations
 
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
@@ -20,3 +20,9 @@ curated_to_enums:
 		--tsv_in curated_organisms.txt \
 		--model_in organisms.yaml \
 		--selected_enum binomial_name_enum
+
+linkml_to_dh_no_annotations:
+	poetry run linkml_to_dh_no_annotations \
+		--model_yaml ../mixs-source/model/schema/mixs.yaml \
+		--add_pattern_to_guidance \
+		--model_class soil
