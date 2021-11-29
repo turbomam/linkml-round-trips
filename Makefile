@@ -1,4 +1,4 @@
-.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample
+.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample interleave_soil_biosample
 
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
@@ -32,3 +32,10 @@ nmdc_biosample:
 	--model_yaml ../nmdc-schema/src/schema/nmdc.yaml \
 	--model_class biosample \
 	--add_pattern_to_guidance
+
+interleave_soil_biosample:
+	poetry run interleave_classes \
+		--model1 ../mixs-source/model/schema/mixs.yaml \
+		--class1 soil \
+		--model2 ../nmdc-schema/src/schema/nmdc.yaml \
+		--class2 biosample

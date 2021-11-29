@@ -11,6 +11,7 @@ crdch-model = "^1.1.5"
 nmdc-schema = "^2021.11.15-rc.1"
 linkml-model = "^1.0.6"
 click-log = "^0.3.2"
+strsimpy = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 
@@ -23,4 +24,5 @@ build-backend = "poetry.core.masonry.api"
 curated_to_enums = "linkml_round_trips.curated_to_enums:curated_to_enums"
 enums_to_curateable = "linkml_round_trips.enums_to_curateable:enums_to_curateable"
 linkml_to_dh_no_annotations = "linkml_round_trips.linkml_to_dh_no_annotations:linkml_to_dh_no_annotations"
+interleave_classes = "linkml_round_trips.interleave_classes:interleave_classes"
 
