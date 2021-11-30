@@ -26,18 +26,17 @@ click_log.basic_config(logger)
 @click.option('--itsv', type=click.Path(), default="interleaved_for_curation.tsv", show_default=True)
 @click.option('--shingle_size', default=3, show_default=True)
 def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, iname, itsv, shingle_size):
-    # model1 = "../../mixs-source/model/schema/mixs.yaml"
-    # class1 = "soil"
-    #
-    # model2 = "../../nmdc-schema/src/schema/nmdc.yaml"
-    # class2 = "biosample"
-
+    # todo so much to refactor
     sv1 = SchemaView(model1)
     slots1 = sv1.class_induced_slots(class1)
     slotnames1 = [i.name for i in slots1]
     slots_dict_1 = dict(zip(slotnames1, slots1))
     slotnames1.sort()
     name1 = sv1.schema.name
+    all_slots1 = sv1.all_slots()
+    all_slot_names1 = list(all_slots1.keys())
+    all_slot_names1.sort()
+    # print(all_slot_names1)
 
     sv2 = SchemaView(model2)
     slots2 = sv2.class_induced_slots(class2)
@@ -45,12 +44,23 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
     slots_dict_2 = dict(zip(slotnames2, slots2))
     slotnames2.sort()
     name2 = sv2.schema.name
+    all_slots2 = sv2.all_slots()
+    all_slot_names2 = list(all_slots2.keys())
+    all_slot_names2.sort()
+    # print(all_slot_names2)
 
     slot_names_only_1 = list(set(slotnames1) - set(slotnames2))
     slot_names_only_1.sort()
+    # find slots from schema1 class1 that are in schema2 just not in class2
+    newdiff = list(set(slotnames1) - set(all_slot_names2))
+    print(len(slot_names_only_1))
+    print(len(newdiff))
 
     slot_names_only_2 = list(set(slotnames2) - set(slotnames1))
     slot_names_only_2.sort()
+    newdiff = list(set(slotnames2) - set(all_slot_names1))
+    print(len(slot_names_only_2))
+    print(len(newdiff))
 
     slot_names_intersection = list(set(slotnames1).intersection(set(slotnames2)))
     slot_names_intersection.sort()
@@ -148,5 +158,7 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
     current_frame.to_csv(itsv, sep="\t", index=False)
 
     # ----
+
+    interleaved_sd.classes[iclass] = interleaved_class
 
     yaml_dumper.dump(interleaved_sd, imodel)

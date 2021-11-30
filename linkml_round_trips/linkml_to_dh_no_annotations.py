@@ -6,9 +6,31 @@ import click
 import logging
 import click_log
 
+import urllib.parse
+
 # todo add logger
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
+
+
+# OK? don't use : as separator in "Ontology ID" if prefix ends with /
+
+# OK? when adding a pattern to "guidance": don't use " | " separator if guidance (comments) is already empty
+
+# give diagnostic printouts some labels or context
+
+# ordering of sections
+# ordering of columns within sections
+# id column and it's section should be first
+# inferred from identifier attribute
+
+# todo: my quantity_value_pattern "^\d*\.?\d*\s\S*$" is not identical to the pattern \d+[.\d+] \S+
+# include option to trust regex patterns from slot's pattern attribute?
+# MIxS patterns aren't regexes (right?)
+
+# todo labels (from titles) should be human friendly
+#   prefer MIxS label even if slot isn't used in claimed class?
+#     but this may be happening in script interleave_classes
 
 
 @click.command()
@@ -28,6 +50,11 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
     # some mappings aren't direct. see "indirect mappings below"
     dh_to_linkml_direct = {"min value": "minimum_value", "max value": "maximum_value", "description": "description",
                            "EXPORT_dev": "name"}
+
+    # more columns, like other exports, could be added
+    dht_column_order = ["Ontology ID", "label", "parent class", "description", "guidance", "datatype", "pattern",
+                        "requirement", "examples", "source", "capitalize", "data status", "max value", "min value",
+                        "EXPORT_dev"]
 
     # would be nice to make these patterns specific for particular units
     # see also the syntax slot
@@ -54,7 +81,11 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
 
     model_view = SchemaView(model_yaml)
 
-    model_def_pref = model_view.schema.default_prefix
+    temp = len(model_view.schema.default_prefix)
+    if model_view.schema.default_prefix[temp - 1] == "/":
+        model_def_pref = model_view.schema.default_prefix
+    else:
+        model_def_pref = model_view.schema.default_prefix + ":"
 
     model_class_slots = model_view.class_induced_slots(model_class)
 
@@ -89,7 +120,9 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
         if model_class_slot_dict[i].slot_uri != "" and model_class_slot_dict[i].slot_uri is not None:
             filled_row["Ontology ID"] = model_class_slot_dict[i].slot_uri
         else:
-            filled_row["Ontology ID"] = f"{model_def_pref}:{model_class_slot_dict[i].name}"
+            # TODO don't use colon separator if model_def_pref is a URI using / separators
+            # todo urlencode
+            filled_row["Ontology ID"] = f"{model_def_pref}{urllib.parse.quote(model_class_slot_dict[i].name)}"
         # label: title if available
         if model_class_slot_dict[i].title != "" and model_class_slot_dict[i].title is not None:
             filled_row["label"] = model_class_slot_dict[i].title
@@ -100,8 +133,11 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
         comments_string = " | ".join(comments_list)
         if add_pattern_to_guidance:
             if model_class_slot_dict[i].pattern is not None:
-                # don't include " | " if comments string is empty to start with
-                comments_string = comments_string + f" | pattern: {model_class_slot_dict[i].pattern}"
+                # todo don't include " | " if comments string is empty to start with
+                if comments_string == "" or comments_string is None:
+                    comments_string = model_class_slot_dict[i].pattern
+                else:
+                    comments_string = comments_string + f" | pattern: {model_class_slot_dict[i].pattern}"
                 pattern_tally.append(model_class_slot_dict[i].pattern)
         filled_row["guidance"] = comments_string
         # join examples values as examples
@@ -193,6 +229,8 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
     pattern_vc = pd.Series(pattern_tally).value_counts()
     pattern_vc = pattern_vc[pattern_vc > 1]
     logger.info(pattern_vc)
+
+    filled_frame = filled_frame[dht_column_order]
 
     filled_frame.to_csv(tsv_out, sep="\t", index=False)
 

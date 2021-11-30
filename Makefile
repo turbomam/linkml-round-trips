@@ -39,3 +39,10 @@ interleave_soil_biosample:
 		--class1 soil \
 		--model2 ../nmdc-schema/src/schema/nmdc.yaml \
 		--class2 biosample
+
+
+soil_biosample_dh:
+	poetry run linkml_to_dh_no_annotations \
+	--model_yaml interleaved.yaml \
+	--model_class interleaved_class \
+	--add_pattern_to_guidance
