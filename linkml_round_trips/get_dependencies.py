@@ -121,7 +121,7 @@ def exhausted_to_sd(exhausted):
 @click.option('--model_file', type=click.Path(exists=True), required=True)
 @click.option('--selected_class', required=True)
 def get_dependencies(model_file, selected_class):
-    print(selected_class)
+    logger.info(selected_class)
 
     global model_sv, mvp, mvs, all_class_names, all_enum_names, all_slots_dict, all_type_names
 

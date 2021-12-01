@@ -1,4 +1,4 @@
-.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample interleave_soil_biosample
+.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample interleave_soil_biosample get_mixs_soil
 
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
@@ -46,3 +46,12 @@ soil_biosample_dh:
 	--model_yaml interleaved.yaml \
 	--model_class interleaved_class \
 	--add_pattern_to_guidance
+
+minimal_mixs_soil.yaml:
+	# writes to stdout
+	poetry run get_dependencies \
+		--model_file ../mixs-source/model/schema/mixs.yaml \
+		--selected_class soil > $@
+
+minimal_mixs_soil_generated.yaml: minimal_mixs_soil.yaml
+	poetry run gen-yaml $< > $@
