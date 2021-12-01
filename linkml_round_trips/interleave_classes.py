@@ -184,3 +184,7 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
         xtally.append(v.range)
 
     print(pd.Series(xtally).value_counts())
+
+
+if __name__ == '__main__':
+    interleave_classes()
