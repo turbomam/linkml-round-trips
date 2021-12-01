@@ -12,6 +12,8 @@ nmdc-schema = "^2021.11.15-rc.1"
 linkml-model = "^1.0.6"
 click-log = "^0.3.2"
 strsimpy = "^0.2.1"
+jupyter = "^1.0.0"
+black = "^21.11b1"
 
 [tool.poetry.dev-dependencies]
 

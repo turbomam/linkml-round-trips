@@ -17,6 +17,8 @@ click_log.basic_config(logger)
 @click_log.simple_verbosity_option(logger)
 @click.option('--model1', type=click.Path(exists=True), required=True)
 @click.option('--class1', required=True)
+@click.option('--scavenge1', is_flag=True,
+              help="will take slot attributes from model1 instead of model2, even if they aren't part of class1")
 @click.option('--model2', type=click.Path(exists=True), required=True)
 @click.option('--class2', required=True)
 @click.option('--imodel', type=click.Path(), default="interleaved.yaml", show_default=True)
@@ -25,44 +27,54 @@ click_log.basic_config(logger)
 @click.option('--iname', default="interleaved", show_default=True)
 @click.option('--itsv', type=click.Path(), default="interleaved_for_curation.tsv", show_default=True)
 @click.option('--shingle_size', default=3, show_default=True)
-def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, iname, itsv, shingle_size):
+def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, iname, itsv, shingle_size, scavenge1):
     # todo so much to refactor
     sv1 = SchemaView(model1)
-    slots1 = sv1.class_induced_slots(class1)
-    slotnames1 = [i.name for i in slots1]
-    slots_dict_1 = dict(zip(slotnames1, slots1))
-    slotnames1.sort()
+    class_slots1 = sv1.class_induced_slots(class1)
+    class_slot_names1 = [i.name for i in class_slots1]
+    class_slot_dict_1 = dict(zip(class_slot_names1, class_slots1))
+    class_slot_names1.sort()
+
     name1 = sv1.schema.name
+
     all_slots1 = sv1.all_slots()
     all_slot_names1 = list(all_slots1.keys())
+    all_slot_dict_1 = dict(zip(all_slot_names1, all_slots1))
     all_slot_names1.sort()
-    # print(all_slot_names1)
+
+    if scavenge1:
+        print("scavenging")
+    else:
+        print(f"only using attributes from slots explicitly associated with {class1}")
 
     sv2 = SchemaView(model2)
-    slots2 = sv2.class_induced_slots(class2)
-    slotnames2 = [i.name for i in slots2]
-    slots_dict_2 = dict(zip(slotnames2, slots2))
-    slotnames2.sort()
-    name2 = sv2.schema.name
-    all_slots2 = sv2.all_slots()
-    all_slot_names2 = list(all_slots2.keys())
-    all_slot_names2.sort()
-    # print(all_slot_names2)
+    class_slots_2 = sv2.class_induced_slots(class2)
+    class_slot_names2 = [i.name for i in class_slots_2]
+    class_slot_dict_2 = dict(zip(class_slot_names2, class_slots_2))
+    class_slot_names2.sort()
 
-    slot_names_only_1 = list(set(slotnames1) - set(slotnames2))
+    name2 = sv2.schema.name
+
+    # not giving an option for scavenging 2?
+    all_class_slots_2 = sv2.all_slots()
+    all_slot_names2 = list(all_class_slots_2.keys())
+    all_slot_names2.sort()
+    # # print(all_slot_names2)
+
+    slot_names_only_1 = list(set(class_slot_names1) - set(class_slot_names2))
     slot_names_only_1.sort()
     # find slots from schema1 class1 that are in schema2 just not in class2
-    newdiff = list(set(slotnames1) - set(all_slot_names2))
+    newdiff = list(set(class_slot_names1) - set(all_slot_names2))
     print(len(slot_names_only_1))
     print(len(newdiff))
 
-    slot_names_only_2 = list(set(slotnames2) - set(slotnames1))
+    slot_names_only_2 = list(set(class_slot_names2) - set(class_slot_names1))
     slot_names_only_2.sort()
-    newdiff = list(set(slotnames2) - set(all_slot_names1))
+    newdiff = list(set(class_slot_names2) - set(all_slot_names1))
     print(len(slot_names_only_2))
     print(len(newdiff))
 
-    slot_names_intersection = list(set(slotnames1).intersection(set(slotnames2)))
+    slot_names_intersection = list(set(class_slot_names1).intersection(set(class_slot_names2)))
     slot_names_intersection.sort()
 
     interleaved_sd = SchemaDefinition(name=iname, id=iid)
@@ -76,13 +88,13 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
     for i in slot_names_only_1:
         print(i)
         interleaved_class.slots.append(i)
-        interleaved_sd.slots[i] = slots_dict_1[i]
+        interleaved_sd.slots[i] = class_slot_dict_1[i]
     print("\n")
 
     for i in slot_names_only_2:
         print(i)
         interleaved_class.slots.append(i)
-        interleaved_sd.slots[i] = slots_dict_2[i]
+        interleaved_sd.slots[i] = class_slot_dict_2[i]
     print("\n")
 
     # ----
@@ -92,10 +104,10 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
         print(i)
         interleaved_class.slots.append(i)
         interleaved_sd.slots[i] = SlotDefinition(name=i)
-        attribs1 = slots_dict_1[i].__dict__
+        attribs1 = class_slot_dict_1[i].__dict__
         keys1 = list(attribs1.keys())
         keys1.sort()
-        attribs2 = slots_dict_2[i].__dict__
+        attribs2 = class_slot_dict_2[i].__dict__
         keys2 = list(attribs2.keys())
         keys2.sort()
 
@@ -111,43 +123,45 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
         # print("\n")
         keys_intersection = list(set(keys1).intersection(set(keys2)))
         keys_intersection.sort()
+
         for j in keys_intersection:
-            one_is_empty_string = slots_dict_1[i][j] == ""
-            one_is_empty_list = slots_dict_1[i][j] == []
-            one_is_empty_dict = slots_dict_1[i][j] == {}
-            one_is_none = slots_dict_1[i][j] is None
+            one_is_empty_string = class_slot_dict_1[i][j] == ""
+            one_is_empty_list = class_slot_dict_1[i][j] == []
+            one_is_empty_dict = class_slot_dict_1[i][j] == {}
+            one_is_none = class_slot_dict_1[i][j] is None
             one_is_empty = one_is_empty_string or one_is_empty_list or one_is_empty_dict or one_is_none
 
-            two_is_empty_string = slots_dict_2[i][j] == ""
-            two_is_empty_list = slots_dict_2[i][j] == []
-            two_is_empty_dict = slots_dict_2[i][j] == {}
-            two_is_none = slots_dict_2[i][j] is None
+            two_is_empty_string = class_slot_dict_2[i][j] == ""
+            two_is_empty_list = class_slot_dict_2[i][j] == []
+            two_is_empty_dict = class_slot_dict_2[i][j] == {}
+            two_is_none = class_slot_dict_2[i][j] is None
             two_is_empty = two_is_empty_string or two_is_empty_list or two_is_empty_dict or two_is_none
 
-            same_across_schemas = slots_dict_1[i][j] == slots_dict_2[i][j]
+            same_across_schemas = class_slot_dict_1[i][j] == class_slot_dict_2[i][j]
             if same_across_schemas:
-                interleaved_sd.slots[i][j] = slots_dict_1[i][j]
+                interleaved_sd.slots[i][j] = class_slot_dict_1[i][j]
                 # adding indicator that some conflicting attributes may still need to be curated
                 interleaved_sd.slots[i].annotations["needs_reconciliation"] = Annotation(tag="needs_reconciliation",
                                                                                          value=True)
             elif one_is_empty and not two_is_empty:
-                # print(f"{name1} {i} {j} {slots_dict_1[i][j]} is empty but {name2} {slots_dict_2[i][j]} is not")
-                interleaved_sd.slots[i][j] = slots_dict_2[i][j]
+                # print(f"{name1} {i} {j} {class_slot_dict_1[i][j]} is empty but {name2} {class_slot_dict_2[i][j]} is not")
+                interleaved_sd.slots[i][j] = class_slot_dict_2[i][j]
                 interleaved_sd.slots[i].annotations[j] = Annotation(tag=j, value=f"non-blank {name2} wins")
                 # interleaved_sd.slots[i].annotations = Annotation(tag="non_blank_winner",
                 #                                                  value=f"{name2} wins over blank {name1}")
             elif two_is_empty and not one_is_empty:
-                # print(f"{name2} {i} {j} {slots_dict_2[i][j]} is empty but {name1} {slots_dict_1[i][j]} is not")
-                interleaved_sd.slots[i][j] = slots_dict_1[i][j]
+                # print(f"{name2} {i} {j} {class_slot_dict_2[i][j]} is empty but {name1} {class_slot_dict_1[i][j]} is not")
+                interleaved_sd.slots[i][j] = class_slot_dict_1[i][j]
                 interleaved_sd.slots[i].annotations[j] = Annotation(tag=j, value=f"non-blank {name1} wins")
             else:
                 current_row = empty_row.copy()
                 current_row["slot"] = i
                 current_row["attribute"] = j
-                current_row[name1] = slots_dict_1[i][j]
-                current_row[name2] = slots_dict_2[i][j]
-                # if type(slots_dict_1[i][j]) == str and type(slots_dict_2[i][j]) == str:
-                current_row["cosine_dist"] = cosine_obj.distance(str(slots_dict_1[i][j]), str(slots_dict_2[i][j]))
+                current_row[name1] = class_slot_dict_1[i][j]
+                current_row[name2] = class_slot_dict_2[i][j]
+                # if type(class_slot_dict_1[i][j]) == str and type(class_slot_dict_2[i][j]) == str:
+                current_row["cosine_dist"] = cosine_obj.distance(str(class_slot_dict_1[i][j]),
+                                                                 str(class_slot_dict_2[i][j]))
                 # print(current_row)
                 needs_curation.append(current_row)
         current_frame = pd.DataFrame(needs_curation)
@@ -162,3 +176,11 @@ def interleave_classes(model1, class1, model2, class2, imodel, iclass, iid, inam
     interleaved_sd.classes[iclass] = interleaved_class
 
     yaml_dumper.dump(interleaved_sd, imodel)
+
+    x = interleaved_sd.slots
+    xtally = []
+    # print(type(x))
+    for k, v in x.items():
+        xtally.append(v.range)
+
+    print(pd.Series(xtally).value_counts())
