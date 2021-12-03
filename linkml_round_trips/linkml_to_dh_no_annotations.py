@@ -34,7 +34,7 @@ click_log.basic_config(logger)
 @click.command()
 @click_log.simple_verbosity_option(logger)
 @click.option('--model_yaml', type=click.Path(exists=True), help="LinkML YAML input")
-@click.option('--tsv_out', type=click.Path(), default="data.tsv", show_default=True,
+@click.option('--tsv_out', type=click.Path(), default="target/data.tsv", show_default=True,
               help="DH template output")
 @click.option('--model_class', required=True, help="Which class' slots should become DH columns?")
 @click.option('--default_section', default="unknown section", show_default=True,
