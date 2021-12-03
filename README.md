@@ -19,7 +19,9 @@ There are also [Makefile rules](Makefile) that illustrate the usage of command l
 ### Converting one or more machine-readalbe documents into a [DataHarmonizer](https://github.com/cidgoh/DataHarmonizer) interface
 We use DataHarmonizer to build interfaces for gathering standards-based data, such as biosample metadata. For example, one NMDC biosample metadata iterface might combine the [`soil`](https://cmungall.github.io/mixs-source/Soil/#class-soil) package/class from [MiXS](https://github.com/cmungall/mixs-source) with the [`biosample`](https://microbiomedata.github.io/nmdc-schema/Biosample/#class-biosample) class from the [`nmdc-schema`](https://github.com/microbiomedata/nmdc-schema)
 
-Additional links for MIxS
+_Additional links for MIxS_:
+- [_GSC MIxS home page_](https://gensc.org/mixs/)
+- [_MIxS v5 and v6 specifications as Google Sheets_](https://docs.google.com/spreadsheets/d/1QDeeUcDqXes69Y2RjU2aWgOpCVWo5OVsBX9MKmMqi_o/edit#gid=178015749)
 
 In other words, the LinkML slots describing the `soil` class and the `biosmaple` will appear as columns in one DataHarmonizer interface. The two classes might both define a class with a shared name, so the code in this repo must supoort resolving differences in how those shared slots are defined (with as much automation as possible).
 
