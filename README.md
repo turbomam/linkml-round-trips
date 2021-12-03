@@ -11,7 +11,7 @@ Installation notes are avaialble for:
 ### User interfaces are buit with [Click](https://click.palletsprojects.com/)
 In a local checkout of this repo, tools can be run with `poetry run <tool>`.
 
-There are also [Makefile rules](Makefile) that illustrate the usage of command line parameters
+There are also [Makefile rules](Makefile) that illustrate the usage of command line parameters. These rules assume that the following GH repos have been cloned into  directories located in the same parent directory as this repo.
 
 
 ## Tasks
@@ -26,6 +26,37 @@ _Additional links for MIxS_:
 In other words, the LinkML slots describing the `soil` class and the `biosmaple` will appear as columns in one DataHarmonizer interface. The two classes might both define a class with a shared name, so the code in this repo must supoort resolving differences in how those shared slots are defined (with as much automation as possible).
 
 Another requirement is supporting institution or project-specific DataHarmoinzer columns. The requirements of [EMSL](https://www.emsl.pnnl.gov/) are provided as the [Soil-NMDC-Template_Compile Google Sheet](https://docs.google.com/spreadsheets/d/1pSmxX6XGOxmoA7S7rKyj5OaEl3PmAl4jAOlROuNHrU0/edit#gid=0). Requiremetns from [JGI](https://jgi.doe.gov/) can be found at ???
+
+
+
+Automatic conversion of one class from one LinkML file to a DataHarmonizer template:
+
+```shell
+poetry run linkml_to_dh_no_annotations \
+  --model_yaml ../mixs-source/model/schema/mixs.yaml \
+  --model_class soil \
+  --tsv_out data.tsv
+```
+
+**Notes**:
+- this `data..tsv` file still needs to be placed into a DH tempalte folder and [converted into `data.js`](https://github.com/cidgoh/DataHarmonizer/blob/master/script/make_data.py)
+- the DH sections are arranged alphabetically, as are the collumns withing the sections. It is assumed that the tempate builder will want to reorder the sections at least, especially putting some "identifiers" section first, with the primary key column first within the section.
+
+TODOS:
+- explain QC output
+- elaborate section and column ordering
+- pattern tabulation seems broken
+
+`make soil_biosample_dh` expands to
+
+```shell
+poetry run linkml_to_dh_no_annotations \
+	--model_yaml interleaved.yaml \
+	--model_class interleaved_class \
+	--add_pattern_to_guidance
+```
+  
+#### relationship between DataHarmonizer "guidance" and LinkML slots?
 
 ### Managing permissible values in LinkML [enumerations](https://linkml.io/linkml-model/docs/EnumDefinition/)
 This code was developed in support of the IARPA Felix project and enhances ??? from [linkml-model-enrichment](https://github.com/linkml/linkml-model-enrichment)
