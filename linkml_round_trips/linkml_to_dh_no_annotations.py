@@ -13,16 +13,14 @@ logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
 
 
-# OK? don't use : as separator in "Ontology ID" if prefix ends with /
-
-# OK? when adding a pattern to "guidance": don't use " | " separator if guidance (comments) is already empty
-
-# give diagnostic printouts some labels or context
-
 # ordering of sections
 # ordering of columns within sections
 # id column and it's section should be first
 # inferred from identifier attribute
+
+# OK? don't use : as separator in "Ontology ID" if prefix ends with /
+# OK? when adding a pattern to "guidance": don't use " | " separator if guidance (comments) is already empty
+# OK ? give diagnostic printouts some labels or context
 
 # todo: my quantity_value_pattern "^\d*\.?\d*\s\S*$" is not identical to the pattern \d+[.\d+] \S+
 # include option to trust regex patterns from slot's pattern attribute?
@@ -35,16 +33,25 @@ click_log.basic_config(logger)
 
 @click.command()
 @click_log.simple_verbosity_option(logger)
-@click.option('--model_yaml', type=click.Path(exists=True), default="../mixs-source/model/schema/mixs.yaml",
-              show_default=True)
-@click.option('--tsv_out', type=click.Path(), default="data.tsv", show_default=True)
-@click.option('--model_class', required=True)
-@click.option('--default_section', default="unknown section", show_default=True)
-@click.option('--default_data_status', default="", show_default=True)
-@click.option('--default_capitalize', default="", show_default=True)
-@click.option('--default_source', default="", show_default=True)
-@click.option('--add_pattern_to_guidance', is_flag=True)
-@click.option('--patterns_are_regexes', is_flag=True)
+@click.option('--model_yaml', type=click.Path(exists=True), help="LinkML YAML input")
+@click.option('--tsv_out', type=click.Path(), default="data.tsv", show_default=True,
+              help="DH template output")
+@click.option('--model_class', required=True, help="Which class' slots should become DH columns?")
+@click.option('--default_section', default="unknown section", show_default=True,
+              help="Put slots with no is_a parent into this DH section")
+# add support for other kinds of section inference
+@click.option('--default_data_status', default="", show_default=True,
+              help="See https://github.com/cidgoh/DataHarmonizer/wiki/DataHarmonizer-Templates. Generally left blank.")
+@click.option('--default_capitalize', default="", show_default=True,
+              help="See https://github.com/cidgoh/DataHarmonizer/wiki/DataHarmonizer-Templates. Generally left blank.")
+@click.option('--default_source', default="", show_default=True,
+              help="See https://github.com/cidgoh/DataHarmonizer/wiki/DataHarmonizer-Templates. Generally left blank.")
+# where can patterns be found in the LinkML model? Can they be trusted as regex?
+# explain relationship between LinkML comments and DH guidance (which can be provided as a LinkML annotation)
+@click.option('--add_pattern_to_guidance', is_flag=True,
+              help="Should LinkML pattern values be added to the DH guidance?")
+@click.option('--patterns_are_regexes', is_flag=True,
+              help="LinkML doesn't enforce pattern values as regexes. e.g. MIxS uses non-regex notation.")
 def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_section, default_data_status,
                                 default_capitalize, default_source, add_pattern_to_guidance, patterns_are_regexes):
     # some mappings aren't direct. see "indirect mappings below"
@@ -193,11 +200,14 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
     # how do we know what order to put the sections and slots/columns in without user input?
     model_parents.sort()
     parent_rows = []
+    logger.info("\n")
+    logger.info("Inferred DH sections:")
     for i in model_parents:
         current_parent = blank_row.copy()
         current_parent["label"] = i
         parent_rows.append(current_parent)
-        logger.info(i)
+        logger.info("  " + i)
+    logger.info("\n")
 
     selector_rows = []
     for i in dh_selectors:
@@ -219,16 +229,23 @@ def linkml_to_dh_no_annotations(model_yaml, tsv_out, model_class, default_sectio
 
     filled_frame = pd.concat([parent_frame, columns_frame, selector_frame])
 
+    logger.info("DH template excerpt:")
     logger.info(filled_frame)
+    logger.info("\n")
 
+    logger.info("Tally of ranges from the utilized slots->DH columns:")
     logger.info(pd.Series(range_tally).value_counts())
+    logger.info("\n")
 
     # check list patterns against enumeration PVs
     # may only want to look at those with a count of more than 1 here
     # then can work on regex patterns
     pattern_vc = pd.Series(pattern_tally).value_counts()
     pattern_vc = pattern_vc[pattern_vc > 1]
+
+    logger.info("Tally of patterns (appearing at least twice) from the utilized slots->DH columns:")
     logger.info(pattern_vc)
+    logger.info("\n")
 
     filled_frame = filled_frame[dht_column_order]
 
