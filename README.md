@@ -35,7 +35,7 @@ Automatic conversion of one class from one LinkML file to a DataHarmonizer templ
 poetry run linkml_to_dh_no_annotations \
   --model_yaml ../mixs-source/model/schema/mixs.yaml \
   --model_class soil \
-  --tsv_out data.tsv
+  --tsv_out target/data.tsv
 ```
 
 **Notes**:
@@ -43,7 +43,7 @@ poetry run linkml_to_dh_no_annotations \
 - the DH sections are arranged alphabetically, as are the collumns withing the sections. It is assumed that the tempate builder will want to reorder the sections at least, especially putting some "identifiers" section first, with the primary key column first within the section.
 
 TODOS:
-- explain QC output
+- explain other click options
 - elaborate section and column ordering
 - pattern tabulation seems broken
 
