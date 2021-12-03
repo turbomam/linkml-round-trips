@@ -55,3 +55,7 @@ minimal_mixs_soil.yaml:
 
 minimal_mixs_soil_generated.yaml: minimal_mixs_soil.yaml
 	poetry run gen-yaml $< > $@
+
+
+#poetry run get_dependencies --model_file ../mixs-source/model/schema/mixs.yaml --selected_class soil > target/mixs_soil.yaml
+#poetry run get_dependencies --model_file ../nmdc-schema/src/schema/nmdc.yaml --selected_class biosample > target/nmdc_biosample.yaml
