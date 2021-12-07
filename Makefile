@@ -1,4 +1,4 @@
-.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample interleave_soil_biosample get_mixs_soil
+.PHONY: enums_to_curateable curated_to_enums mixs_soil nmdc_biosample interleave_soil_biosample get_mixs_soil clean all
 
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
@@ -56,6 +56,30 @@ minimal_mixs_soil.yaml:
 minimal_mixs_soil_generated.yaml: minimal_mixs_soil.yaml
 	poetry run gen-yaml $< > $@
 
+###
 
-#poetry run get_dependencies --model_file ../mixs-source/model/schema/mixs.yaml --selected_class soil > target/mixs_soil.yaml
-#poetry run get_dependencies --model_file ../nmdc-schema/src/schema/nmdc.yaml --selected_class biosample > target/nmdc_biosample.yaml
+all: clean target/soil_biosample.yaml
+
+clean:
+	rm -rf target/mixs_soil.yaml
+	rm -rf target/nmdc_biosample.yaml
+	rm -rf target/soil_biosample.yaml
+
+target/mixs_soil.yaml:../mixs-source/model/schema/mixs.yaml
+	poetry run get_dependencies \
+		--model_file $< \
+		--selected_class soil > $@
+
+target/nmdc_biosample.yaml:../nmdc-schema/src/schema/nmdc.yaml
+	poetry run get_dependencies \
+		--model_file $< \
+		--selected_class biosample > $@
+
+# oops imports can't be found
+target/soil_biosample.yaml:target/mixs_soil.yaml target/nmdc_biosample.yaml
+	poetry run merge_dont_interleave \
+		--model_file1 target/mixs_soil.yaml \
+		--model_file2 target/nmdc_biosample.yaml \
+		--output $@
+
+# $(word 1,$^)

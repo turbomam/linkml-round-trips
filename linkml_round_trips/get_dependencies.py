@@ -93,9 +93,9 @@ def exhaust_class(dict_to_exhaust):
         return exhaust_class(dict_to_exhaust)
 
 
-def exhausted_to_sd(exhausted):
+def exhausted_to_sd(exhausted, modelname):
     global model_sv
-    accum_sd = SchemaDefinition(name="accumulated", id="http://example.com/accumulated")
+    accum_sd = SchemaDefinition(name=modelname, id="http://example.com/"+modelname)
     for i in exhausted["exhausted_ranges"]:
         accum_sd.classes[i] = model_sv.get_class(i)
     for i in exhausted["exhausted_slots"]:
@@ -127,6 +127,8 @@ def get_dependencies(model_file, selected_class):
 
     model_sv = SchemaView(model_file)
 
+    model_name = model_sv.schema.name
+
     mvp = model_sv.schema.prefixes
     mvs = model_sv.all_subsets()
 
@@ -155,7 +157,7 @@ def get_dependencies(model_file, selected_class):
 
     exhausted_result = exhaust_class(accum)
 
-    sd_result = exhausted_to_sd(exhausted_result)
+    sd_result = exhausted_to_sd(exhausted_result, model_name)
 
     print(yaml_dumper.dumps(sd_result))
 
