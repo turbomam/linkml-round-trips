@@ -4,6 +4,8 @@ from linkml_runtime.linkml_model import (
     SchemaDefinition
 )
 from linkml_runtime.dumpers import yaml_dumper
+from linkml.utils.rawloader import load_raw_schema
+import yaml
 from linkml_runtime.utils.schemaview import SchemaView
 # from strsimpy import Cosine
 
@@ -16,6 +18,10 @@ import logging
 import click_log
 
 import pandas as pd
+
+from glom import glom, assign
+
+import ast
 
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
@@ -58,6 +64,8 @@ def merge_dont_interleave(model_file1, model_file2, output):
     logger.info("\n")
     logger.info(dta_flattened.value_counts())
     logger.info("\n")
+
+    puredict2 = yaml.safe_load(yaml_dumper.dumps(sv2.schema))
 
     for acc in overall_accumulator:
         #
@@ -105,22 +113,35 @@ def merge_dont_interleave(model_file1, model_file2, output):
                 merged[acc['linkml_element_type']][acc['element_name']][
                     acc['attribute_name']] = f"{name1}:{acc[name1]}|{name2}:{acc[name2]}"
         elif acc['dd_cat'] == "dictionary_item_removed":
-            logger.info(
-                f"{name2} dictionary items absent from {name1}:\n{acc['linkml_element_type']}|{acc['element_name']}:{acc['attribute_name']}:\n{acc[name2]}\n")
+            gpath_pre = acc['linkml_element_type'] + "." + acc['element_name']
+            gpath_post = ".".join(ast.literal_eval(acc['attribute_name']))
+            gpath = gpath_pre + "." + gpath_post
+            logger.info(gpath)
+            gres = glom(puredict2, gpath)
+            logger.info(f"dictionary_item_removed:{gpath}\n{yaml_dumper.dumps(gres)}")
+            logger.info("\n")
+            # dest = yaml.safe_load(yaml_dumper.dumps(sv1.schema))
+            # _ = assign(dest, gpath, gres, missing=dict)
+            # gres = glom(dest, gpath)
+            # logger.log(gres)
+            # try:
+            #     # only getting the last update?
+            #     merged = load_raw_schema(dest)
+            #     # print(type(merged))
+            # except Exception as e:
+            #     print(f"exception {e}")
         else:
-            logger.log(f"unhandled {acc}")
+            logger.info(f"unhandled {acc}")
 
-            #
+    # overall_frame = pd.DataFrame(overall_accumulator)
+    # # todo shouldn't have duplicate rows in the first place
+    # overall_frame.drop_duplicates(inplace=True)
+    # # logger.info(overall_frame)
+    # overall_frame.sort_values(axis=0, by=['linkml_element_type', 'element_name', 'attribute_name', 'dd_cat'],
+    #                           inplace=True)
+    # overall_frame.to_csv("overall_frame.tsv", sep="\t", index=False)
 
-            overall_frame = pd.DataFrame(overall_accumulator)
-            # todo shouldn't have duplicate rows in the first place
-            overall_frame.drop_duplicates(inplace=True)
-            # logger.info(overall_frame)
-            overall_frame.sort_values(axis=0, by=['linkml_element_type', 'element_name', 'attribute_name', 'dd_cat'],
-                                      inplace=True)
-            overall_frame.to_csv("overall_frame.tsv", sep="\t", index=False)
-
-            yaml_dumper.dump(merged, output)
+    yaml_dumper.dump(merged, output)
 
 
 def initialize_nlb(name1, name2):
