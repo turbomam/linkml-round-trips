@@ -88,6 +88,9 @@ def merge_dont_interleave(model_file1, model_file2, output):
         elif acc['dd_cat'] == "values_changed" and acc['attribute_name'] == 'range' and acc[name1] in list(
                 merged['enums'].keys()):
             pass
+        # whose slot uri? keeping MIxS form position XXX
+        elif acc['dd_cat'] == "values_changed" and acc['attribute_name'] == 'slot_uri':
+            pass
         elif acc['attribute_name'] == "from_schema":
             merged[acc['linkml_element_type']][acc['element_name']][
                 acc['attribute_name']] = "https://github.com/turbomam/linkml-round-trips"

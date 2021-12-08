@@ -1,4 +1,5 @@
-from linkml_runtime.linkml_model import SchemaDefinition, ClassDefinition, SlotDefinition, Annotation
+from linkml_runtime.linkml_model import SchemaDefinition \
+    # ClassDefinition, SlotDefinition, Annotation
 from linkml_runtime.dumpers import yaml_dumper
 from linkml_runtime.utils.schemaview import SchemaView
 
@@ -93,13 +94,26 @@ def exhaust_class(dict_to_exhaust):
         return exhaust_class(dict_to_exhaust)
 
 
-def exhausted_to_sd(exhausted, modelname):
+def exhausted_to_sd(exhausted, modelname, classname, mod_def_pref):
     global model_sv
-    accum_sd = SchemaDefinition(name=modelname, id="http://example.com/"+modelname)
+
+    accum_sd = SchemaDefinition(name=modelname + "_" + classname,
+                                id="http://example.com/" + modelname + "_" + classname)
     for i in exhausted["exhausted_ranges"]:
         accum_sd.classes[i] = model_sv.get_class(i)
     for i in exhausted["exhausted_slots"]:
         accum_sd.slots[i] = model_sv.get_slot(i)
+        # what about whitespace?
+        if accum_sd.slots[i].slot_uri is None or accum_sd.slots[i].slot_uri == "":
+            new_uri = mod_def_pref + ":" + i
+            # logger.info("new: " + new_uri)
+            accum_sd.slots[i].slot_uri = new_uri
+        else:
+            pass
+            # logger.info("existing: " + accum_sd.slots[i].slot_uri)
+
+    # need to construct slot uris?
+
     for i in exhausted["exhausted_types"]:
         accum_sd.types[i] = model_sv.get_type(i)
     for i in exhausted["exhausted_enums"]:
@@ -112,6 +126,8 @@ def exhausted_to_sd(exhausted, modelname):
     # limit these to those prefixes claimed by any element?
     for k, v in mvp.items():
         accum_sd.prefixes[k] = v
+
+    accum_sd.default_prefix = mod_def_pref
 
     return accum_sd
 
@@ -128,6 +144,7 @@ def get_dependencies(model_file, selected_class):
     model_sv = SchemaView(model_file)
 
     model_name = model_sv.schema.name
+    model_def_pref = model_sv.schema.default_prefix
 
     mvp = model_sv.schema.prefixes
     mvs = model_sv.all_subsets()
@@ -157,7 +174,7 @@ def get_dependencies(model_file, selected_class):
 
     exhausted_result = exhaust_class(accum)
 
-    sd_result = exhausted_to_sd(exhausted_result, model_name)
+    sd_result = exhausted_to_sd(exhausted_result, model_name, selected_class, model_def_pref)
 
     print(yaml_dumper.dumps(sd_result))
 
