@@ -43,20 +43,28 @@ target/soil_biosample.yaml:target/mixs_soil.yaml target/nmdc_biosample_generated
 		--output $@
 
 
-
 # need to create click UI
 target/soil_biosample_interleaved.yaml: target/soil_biosample.yaml
-	poetry run python linkml_round_trips/interleave_mergeds.py
+	#poetry run python linkml_round_trips/interleave_mergeds.py
+	poetry run interleave_mergeds \
+		--model_file=$< \
+		--class1 "soil" \
+		--class2 "biosample" \
+		--source_name1 "MIxS" \
+		--source_name2 "NMDC" \
+		--output $@
 	# can check the validity of any LinkML file (and generate a more explicit version?) with gen-yaml
 	poetry run gen-yaml \
 		target/soil_biosample_interleaved.yaml > target/soil_biosample_interleaved_generated.yaml \
 			2> target/soil_biosample_interleaved_generated.log
 
-# need to create click UI
 # if range is one of the enums, then pattern is probably a string serialization
 #   *something* along those lines is being checked in linkml_to_dh_light.py, but that should be moved into make model/schema/mixs.yaml
 target/data.tsv: target/soil_biosample_interleaved.yaml
-	poetry run python linkml_round_trips/linkml_to_dh_light.py
+	poetry run linkml_to_dh_light \
+		--model_file $< \
+		--selected_class soil_biosample_class \
+		--output_file=$@
 
 templating_handoff: target/data.tsv
 	cp $< ../DataHarmonizer/template/dev
