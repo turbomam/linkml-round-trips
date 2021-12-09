@@ -1,3 +1,17 @@
+# for following workflow, must first create MIxS LinkML
+#   from main branch of forked https://github.com/turbomam/mixs-source
+
+# (moves "patterns" to string serializastions and removes some comments)
+#   rm -rf model/schema/*yaml
+#   make model/schema/mixs.yaml
+
+# check with
+#   pipenv run gen-yaml model/schema/mixs.yaml | less
+
+# still having trouble instantiating annotations for what used to be comments
+#   Occurrence, "This field is used..."
+# yaml.representer.RepresenterError: ('cannot represent an object', JsonObj(Occurrence=Annotation(tag='Occurrence', value='', extensions={}, annotations={})))
+
 .PHONY: all clean serializastion_vs_pattern negative_case
 
 all: clean serializastion_vs_pattern target/data.tsv
@@ -43,7 +57,6 @@ target/soil_biosample.yaml:target/mixs_soil.yaml target/nmdc_biosample_generated
 		--output $@
 
 
-# need to create click UI
 target/soil_biosample_interleaved.yaml: target/soil_biosample.yaml
 	#poetry run python linkml_round_trips/interleave_mergeds.py
 	poetry run interleave_mergeds \
@@ -98,7 +111,6 @@ templating_handoff: target/data.tsv
 ###
 
 .PHONY: enums_to_curateable curated_to_enums
-#mixs_soil nmdc_biosample interleave_soil_biosample get_mixs_soil
 
 # in linkml-model-enrichment repo
 #   make sample-enum-mapping
@@ -114,12 +126,13 @@ enums_to_curateable:
 # do some curation on enums_to_curateable.tsv and save as curated_organisms.txt
 # Excel wants to call it "*.txt". I'm saving as UTF 16 so I can be sure about the encoding at import time.
 
-
 curated_to_enums:
 	poetry run curated_to_enums \
 		--tsv_in curated_organisms.txt \
 		--model_in organisms.yaml \
 		--selected_enum binomial_name_enum
+
+###
 
 #mixs_soil:
 #	poetry run linkml_to_dh_no_annotations \
@@ -146,27 +159,4 @@ curated_to_enums:
 #	--model_yaml interleaved.yaml \
 #	--model_class interleaved_class \
 #	--add_pattern_to_guidance
-#
-#minimal_mixs_soil.yaml:
-#	# writes to stdout
-#	poetry run get_dependencies \
-#		--model_file ../mixs-source/model/schema/mixs.yaml \
-#		--selected_class soil > $@
-#
-#minimal_mixs_soil_generated.yaml: minimal_mixs_soil.yaml
-#	poetry run gen-yaml $< > $@
-
-### MIxS sil and NMDC biosample DH workflow
-
-# for following workflow, must create MIxS LinkML from main branch of forked https://github.com/turbomam/mixs-source
-# (moves "patterns" to string serializastions and removes some comments)
-#   rm -rf model/schema/*yaml
-#   make model/schema/mixs.yaml
-
-# check with
-#   pipenv run gen-yaml model/schema/mixs.yaml | less
-
-# still having trouble instantiating annotations for what used to be comments
-#   Occurrence, "This field is used..."
-# yaml.representer.RepresenterError: ('cannot represent an object', JsonObj(Occurrence=Annotation(tag='Occurrence', value='', extensions={}, annotations={})))
 
