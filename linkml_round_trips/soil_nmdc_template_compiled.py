@@ -498,6 +498,7 @@ print(yaml_dumper.dumps(my_schema))
 
 yaml_dumper.dump(my_schema, "sntc.yaml")
 
+
 # meta_view = SchemaView("../../linkml-model/linkml_model/model/schema/meta.yaml")
 # temp = meta_view.class_induced_slots("slot_definition")
 # t2 = [i.name for i in temp]
@@ -604,3 +605,8 @@ yaml_dumper.dump(my_schema, "sntc.yaml")
 # todos
 # usage_slot_name
 # values_from
+
+# sid should really be an uri or curie
+def just_exacts(sname: str, sid: str) -> SchemaDefinition:
+    sd = SchemaDefinition()
+    return sd
