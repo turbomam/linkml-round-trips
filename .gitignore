@@ -3,6 +3,6 @@
 .ipynb_checkpoints
 __pycache__
 local
-old
+local/old
 target
 
