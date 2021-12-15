@@ -160,3 +160,7 @@ templating_handoff: target/data.tsv
 ##	--model_class interleaved_class \
 ##	--add_pattern_to_guidance
 #
+
+target/mixs_package_classes.tsv:
+	poetry run mixs_package_classes \
+		--model_file ../mixs-source/model/schema/mixs.yaml
