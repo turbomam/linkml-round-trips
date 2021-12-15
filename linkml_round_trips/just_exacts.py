@@ -1,4 +1,4 @@
-from linkml_runtime.linkml_model import SchemaDefinition, Prefix
+from linkml_runtime.linkml_model import SchemaDefinition, Prefix, ClassDefinition, TypeDefinition, EnumDefinition
 from typing import List
 from linkml_runtime.utils.schemaview import SchemaView
 from pathlib import Path
@@ -22,6 +22,12 @@ class DependencyResolver:
             "exhausted_enums": set(),
             "exhausted_slots": set(),
             "exhausted_types": set(),
+        }
+        self.element_dict = {
+            "classes": [],
+            "enums": [],
+            "slots": [],
+            "types": []
         }
         self.foreign_views = {}
         for i in schema_files:
@@ -52,6 +58,32 @@ class DependencyResolver:
         self.bookkeeping_dict["pending_slots"].remove(slot_name)
         self.bookkeeping_dict["exhausted_slots"].add(slot_name)
 
+    def resolve_dependencies(self):
+        if len(self.bookkeeping_dict["pending_ranges"]) > 0:
+            iterator = iter(self.bookkeeping_dict["pending_ranges"])
+            current_range = next(iterator, None)
+            print(current_range)
+            for k, v in self.foreign_views.items():
+                print(k)
+                attempt = v.get_element(current_range)
+                if attempt is not None:
+                    print(attempt)
+                    if isinstance(attempt, ClassDefinition):
+                        print("is a class")
+                        self.element_dict["classes"].append(attempt)
+                        self.resolve_range(current_range, "exhausted_classes")
+                    elif isinstance(attempt, EnumDefinition):
+                        print("is an enum")
+                        self.element_dict["enums"].append(attempt)
+                        self.resolve_range(current_range, "exhausted_enums")
+                    elif isinstance(attempt, TypeDefinition):
+                        print("is a type")
+                        self.element_dict["types"].append(attempt)
+                        self.resolve_range(current_range, "exhausted_types")
+                    # just trust the first schema in which the term appears?
+                    break
+
+
 
 def main_meth():
     current_resolver = DependencyResolver(
@@ -59,7 +91,8 @@ def main_meth():
     print(current_resolver.get_bookeeping())
     current_resolver.add_pending_range("person")
     print(current_resolver.get_bookeeping())
-    current_resolver.resolve_range("person", "exhausted_classes")
+    current_resolver.resolve_dependencies()
+    # current_resolver.resolve_range("person", "exhausted_classes")
     print(current_resolver.get_bookeeping())
     cr_fv = current_resolver.foreign_views
     # cr_fv_keys = list(cr_fv.keys())
